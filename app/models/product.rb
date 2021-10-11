@@ -1,0 +1,11 @@
+class Product < ApplicationRecord
+    has_many :category_products #RELACIONA EL MODELO PRODUCTOS CON LA TABLA CATEGORIAPRODUCTOS
+    has_many :categories, through: :category_products #LA TABLA PRODUCTOS VA A ESTAR RELACIONADA CON LA TABLA CATEGORIA A TRAVÉS TABLA CATEGORIAPRODUCTOS
+
+    has_many :pyme_products #RELACIONA EL MODELO PRODUCTOS CON LA TABLA PYMEPRODCTOS
+    has_many :entrepreneurships, through: :pyme_products #LA TABLA PRODUCTOS VA A ESTAR RELACIONADA CON LA TABLA EMPRENDIMIENTO A TRAVÉS TABLA PYMESPRODUCTOS
+
+    #VALIDACIÓN DE LOS DATOS INGRESADOS
+    validates :name, :price, :information, presence: true #ACÁ SE VALIDA QUE EL DATO QUE SE INGRESE EN LOS ATRIBUTOS INDICADOS, NO SEAN NULOS O VACÍOS
+    validates :price, numericality: { only_integer: true } #ACÁ SE VALIDA QUE EL DATO QUE SE INGRESE EN EL ATRIBUTO PRICE SEA UN NÚMERO ENTERO
+end

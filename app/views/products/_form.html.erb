@@ -1,0 +1,37 @@
+<!-- PLANTILLA BOOTSTRAP TARJETAS-->
+<div class="micardnew mb-3 " >
+  <div class="row g-0 ">
+    <div class="col-md-4 mifotonew">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8 miformularionew">
+      <div class="card-body">
+        <%= simple_form_for(product) do |form| %>
+          <div class="field card-title">
+            <%= form.input :name %>
+          </div>
+
+          <div class="field card-text">
+            <%= form.input :price %>
+          </div>
+
+          <div class="field card-text">
+            <%= form.text_area :information %>
+          </div>
+
+          <div class="field">
+            <%= form.association :categories, as: :check_boxes %>
+          </div>
+
+          <div class="actions">
+            <%= form.button :submit %>
+          </div>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
