@@ -1,22 +1,26 @@
 <!-- PLANTILLA BOOTSTRAP TARJETAS-->
-<div class="micardnew mb-3 " >
+<%= simple_form_for(product) do |form| %>
+<div class="micardnew mb-3 "  >
   <div class="row g-0 ">
+    
     <div class="col-md-4 mifotonew">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
+        <div class="field">
+          <%= form.file_field :imagen %> <!--CON LA AYUDA DE ACTIVE_STORAGE SE ALMACENA LAS IMAGENES DE LOS PRODUCTOS-->
+        </div>
+      
+    </div>  
     <div class="col-md-8 miformularionew">
       <div class="card-body">
-        <%= simple_form_for(product) do |form| %>
           <div class="field card-title">
-            <%= form.input :name %>
+            <%= form.input :name, label: "NOMBRE DEL PRODUCTO" %>
           </div>
 
           <div class="field card-text">
-            <%= form.input :price %>
+            <%= form.input :price, label: "PRECIO", hint: "INDIQUE EL PRECIO EN PESOS CHILENOS" %>
           </div>
 
           <div class="field card-text">
-            <%= form.text_area :information %>
+            <%= form.input :information, as: :text, label: "DESCRIPCIÓN DEL PRODUCTO"%>
           </div>
 
           <div class="field">
@@ -24,13 +28,16 @@
           </div>
 
           <div class="actions">
-            <%= form.button :submit %>
+            <%= form.button :submit, label: "CREAR PRODUCTO" %>
           </div>
-        <% end %>  
+          
       </div>
     </div>
+    
   </div>
 </div>
+
+<% end %>
 
 
 
