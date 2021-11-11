@@ -1,6 +1,8 @@
-<h1>Editing Product</h1>
-
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="editproducts">
+    <h1>EDITAR PRODUCTO</h1>
+    <%= render 'form', product: @product %>
+    <div>
+        <%= link_to 'Show', @product, class: "botonNaranja" %> 
+        <%= link_to 'Back', products_path, class: "botonNaranja" %>
+    </div>
+</div>

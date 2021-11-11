@@ -1,0 +1,20 @@
+<div class="registroAzul">
+  <h2>OLVIDASTE TU PASSWORD?</h2>
+
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs" style="background-color:white; color:black; width: 50%; margin: auto; padding:15px;">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+    </div>
+
+    <div class="form-actions text-center" style="margin:auto; margin-top:25px;">
+      <%= f.button :submit, "Send me reset password instructions", class:"botonNaranjaLargo"%>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

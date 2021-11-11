@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :entrepreneurships
+  devise_for :buyers
+  devise_for :pymes
   resources :products
   resources :categories
   get 'home/index'

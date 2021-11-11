@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_173720) do
+ActiveRecord::Schema.define(version: 2021_11_09_204943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2021_10_13_173720) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "buyers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_buyers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -58,39 +70,38 @@ ActiveRecord::Schema.define(version: 2021_10_13_173720) do
     t.index ["product_id"], name: "index_category_products_on_product_id"
   end
 
-  create_table "entrepreneurships", force: :cascade do |t|
-    t.string "name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password"
-    t.string "pyme_name"
-    t.string "street"
-    t.integer "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.string "information"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "pyme_id"
+    t.index ["pyme_id"], name: "index_products_on_pyme_id"
   end
 
-  create_table "pyme_products", force: :cascade do |t|
-    t.bigint "entrepreneurship_id", null: false
-    t.bigint "product_id", null: false
+  create_table "pymes", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["entrepreneurship_id"], name: "index_pyme_products_on_entrepreneurship_id"
-    t.index ["product_id"], name: "index_pyme_products_on_product_id"
+    t.string "name"
+    t.string "lastname"
+    t.string "pymesname"
+    t.index ["email"], name: "index_pymes_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_pymes_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
-  add_foreign_key "pyme_products", "entrepreneurships"
-  add_foreign_key "pyme_products", "products"
 end

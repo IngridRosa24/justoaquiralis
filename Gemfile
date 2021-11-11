@@ -44,6 +44,9 @@ gem "font-awesome-rails"
 # AGREGAR GEMA PARA FORMULARIOS
 gem 'simple_form'
 
+# AGREGAR GEMA PARA AUTENTIFICACIÓN DE USUARIO
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

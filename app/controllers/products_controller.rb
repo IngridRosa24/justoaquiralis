@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_buyer!
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    puts "Index"
+    puts "current_pyme.id", current_pyme.id
+    
+    @products = Product.where(pyme_id: current_pyme.id)
   end
 
   # GET /products/1 or /products/1.json
@@ -13,6 +17,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    
   end
 
   # GET /products/1/edit
@@ -21,8 +26,11 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
+    
     @product = Product.new(product_params)
-
+    @product.pyme_id = current_pyme.id
+    
+    
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }

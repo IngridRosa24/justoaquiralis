@@ -1,6 +1,6 @@
 <!-- PLANTILLA BOOTSTRAP TARJETAS-->
 <%= simple_form_for(product) do |form| %>
-<div class="micardnew mb-3 "  >
+<div class="micardnew mb-3 ">
   <div class="row g-0 ">
     
     <div class="col-md-4 mifotonew">
@@ -23,13 +23,16 @@
             <%= form.input :information, as: :text, label: "DESCRIPCIÓN DEL PRODUCTO"%>
           </div>
 
-          <div class="field">
-            <%= form.association :categories, as: :check_boxes %>
+          <div class="field card-text">
+            <%= form.association :categories, input_html: {multiple: true}, include_hidden: false, label: "CATEGORÍA DE PRODUCTOS", item_wrapper_class: "inline"  %>
+            
           </div>
 
           <div class="actions">
             <%= form.button :submit, label: "CREAR PRODUCTO" %>
           </div>
+
+
           
       </div>
     </div>

@@ -1,9 +1,29 @@
 <!-- MENÚ PARA ENCABEZADO NARANJA-->
 <div class="miheadernaranja">
-    <i class="fas fa-store text-white Inicio mx-1 fa-lg"></i>
-    <input class="botonAzul" type="button" value="PYMES" id="btnInicio">
-    <i class="fas fa-user-circle Inicio text-white mx-1 fa-lg"></i>
-    <input class="botonAzul" type="button" value="COMPRADOR" id="btnForm">
+<!--CONDICIONAR LAS VISTAS PARA QUE SOLO APAREZCAN LOS BOTONES NECESARIOS PARA PYMES -->
+    <% if pyme_signed_in?  %>
+        <%= "Bienvenid@ "+ current_pyme.email%>
+        <i class="far fa-times-circle text-white Inicio mx-1 fa-lg"></i>
+        <%= link_to "CERRAR SESIÓN", destroy_pyme_session_path, method: :delete, class:"botonAzul" %>
+        <i class="fas fa-user-edit text-white Inicio mx-1 fa-lg"></i>
+        <%= link_to "EDITAR DATOS", edit_pyme_registration_path, class:"botonAzul" %>
+        
+    <% elsif buyer_signed_in? %>
+        <%= "Bienvenid@ "+ current_buyer.email%>
+        <i class="far fa-times-circle text-white Inicio mx-1 fa-lg"></i>
+        <%= link_to "CERRAR SESIÓN", destroy_buyer_session_path, method: :delete, class:"botonAzul" %>
+        <i class="fas fa-user-edit text-white Inicio mx-1 fa-lg"></i>
+        <%= link_to "EDITAR DATOS", edit_buyer_registration_path, class:"botonAzul" %>
+
+    <%else%>
+        <i class="fas fa-store text-white Inicio mx-1 fa-lg"></i>
+        <!--<input class="botonAzul" type="button" value="PYMES" id="btnInicio">-->
+        <%= link_to "PYMES", new_pyme_session_path, class:"botonAzul" %>
+        <i class="fas fa-user-circle Inicio text-white mx-1 fa-lg"></i>
+        <!--<input class="botonAzul" type="button" value="COMPRADOR" id="btnForm">-->
+        <%= link_to "COMPRADOR", new_buyer_session_path, class:"botonAzul" %>
+    <% end %>
+
 </div>
 <!-- MENÚ PARA ENCABEZADO AZUL-->
 <nav class="navbar navbar-expand-lg miheaderazul">
@@ -34,6 +54,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">CONTÁCTANOS</a>
                 </li>
+                <%if pyme_signed_in? %>
+                    <li class="nav-item">
+                        <div class="pt-2 ps-2">
+                            <%= link_to current_pyme.pymesname.to_s.upcase, products_path %>
+                        </div>
+                    </>
+                <%end%>
             </ul>
         </div>
     </div>

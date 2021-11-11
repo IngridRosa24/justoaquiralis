@@ -1,20 +1,59 @@
-<p id="notice"><%= notice %></p>
+<div class="showproducts">
+<h1>VISTA DEL PRODUCTO</h1>
+  <div class="micardshow mb-3 ">
+    <div class="row g-0">
+      
+      <div class="col-md-4 mifotoshow">
+          <div class="field">
+            <%= image_tag @product.imagen, style:"width:350px; border: 5px solid white; border-radius:15px;"%><!--CON LA AYUDA DE ACTIVE_STORAGE SE MUESTRA LAS IMAGENES DE LOS PRODUCTOS-->
+          </div>
+        
+      </div>  
+      <div class="col-md-8 miformularioshow">
+        <div class="card-body">
+            <div class="field card-title">
+              <p>
+                <strong>Nombre del artículo:</strong>
+                <%= @product.name %>
+              </p>
+            </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+            <div class="field card-text">
+              <p>
+                <strong>Price:</strong>
+                <%= @product.price %>
+              </p>
+            </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+            <div class="field card-text">
+              <p>
+                <strong>Information:</strong>
+                <%= @product.information %>
+              </p>
+            </div>
 
-<p>
-  <strong>Information:</strong>
-  <%= @product.information %>
-</p>
+            <div class="field card-text">
+              <p>
+                <strong>Categoria:</strong>
+                <%= @product.category_ids %>
+              </p>
+            </div>
+
+        </div>
+      </div>
+      <div style="margin-top:25px; text-align:center;">
+        <%= link_to 'Edit', edit_product_path(@product), class: "botonNaranja"  %> |
+        <%= link_to 'Back', products_path, class: "botonNaranja"  %>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+
+
+
+

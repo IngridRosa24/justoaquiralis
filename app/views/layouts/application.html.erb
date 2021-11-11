@@ -13,7 +13,12 @@
   <body>
   <!-- LLAMAMOS EL NAVBAR CREADO EN LA CARPETA PARTIALS-->
   <%= render "/partials/navbar" %>
-  
+
+  <!-- INSTRUCCIÓN PARA NOTIFICAR Y DAR ALERTA DURANTE LA AUTENTIFICACIÓN DE USUARIO-->
+  <div class="miheaderazul2">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
   <%= yield %>
 
   <%= render "/partials/footer" %>
